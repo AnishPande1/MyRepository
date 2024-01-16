@@ -1,0 +1,36 @@
+
+Collecting tasks from: tasks.py
+================================ Running: [96mmain[0m =================================
+[96mmain[0m status: [91mFAIL
+[0m[91m
+Timeout 60000ms exceeded.
+[0m======================== Full Traceback (running [96mmain[0m) =========================
+[91mTraceback (most recent call last):
+  File "C:\ProgramData\robocorp\ht\c26ba1f_b1f3c24_1c0bc041\lib\site-packages\robocorp\tasks\_commands.py", line 431, in run
+    result = task.run(*args, **kwargs)
+  File "C:\ProgramData\robocorp\ht\c26ba1f_b1f3c24_1c0bc041\lib\site-packages\robocorp\tasks\_task.py", line 78, in run
+    return self.method(*args, **kwargs)
+  File "c:\Users\Manish\Desktop\Robocorp\robot2\tasks.py", line 25, in main
+    download_read_return()
+  File "c:\Users\Manish\Desktop\Robocorp\robot2\tasks.py", line 67, in download_read_return
+    fill_form(row)
+  File "c:\Users\Manish\Desktop\Robocorp\robot2\tasks.py", line 48, in fill_form
+    page.select_option("#Head", order["Head"], timeout=timeout)
+  File "C:\ProgramData\robocorp\ht\c26ba1f_b1f3c24_1c0bc041\lib\site-packages\playwright\sync_api\_generated.py", line 11429, in select_option
+    self._sync(
+  File "C:\ProgramData\robocorp\ht\c26ba1f_b1f3c24_1c0bc041\lib\site-packages\playwright\_impl\_sync_base.py", line 115, in _sync
+    return task.result()
+  File "C:\ProgramData\robocorp\ht\c26ba1f_b1f3c24_1c0bc041\lib\site-packages\playwright\_impl\_page.py", line 873, in select_option
+    return await self._main_frame.select_option(**params)
+  File "C:\ProgramData\robocorp\ht\c26ba1f_b1f3c24_1c0bc041\lib\site-packages\playwright\_impl\_frame.py", line 675, in select_option
+    return await self._channel.send("selectOption", params)
+  File "C:\ProgramData\robocorp\ht\c26ba1f_b1f3c24_1c0bc041\lib\site-packages\playwright\_impl\_connection.py", line 62, in send
+    return await self._connection.wrap_api_call(
+  File "C:\ProgramData\robocorp\ht\c26ba1f_b1f3c24_1c0bc041\lib\site-packages\playwright\_impl\_connection.py", line 492, in wrap_api_call
+    return await cb()
+  File "C:\ProgramData\robocorp\ht\c26ba1f_b1f3c24_1c0bc041\lib\site-packages\playwright\_impl\_connection.py", line 100, in inner_send
+    result = next(iter(done)).result()
+playwright._impl._errors.TimeoutError: Timeout 60000ms exceeded.
+
+[0m================================================================================
+Robocorp Log (html): c:\Users\Manish\Desktop\Robocorp\robot2\output\log.html
