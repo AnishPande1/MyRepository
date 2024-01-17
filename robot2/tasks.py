@@ -38,19 +38,20 @@ def main():
     archive_receipts()
     #TODO: Upload robot to control room
 
+sel=Selenium()
+
 def open_robot_order_website():
     """Navigates to given URL"""
-    Browser.goto("https://robotsparebinindustries.com/#/robot-order")
+    sel.open_browser("https://robotsparebinindustries.com/#/robot-order")
 
 def fill_form(order):
     """Reads and fills orders"""
-    page = Browser.page()
-    page.select_option("#Head", order["Head"])
-    Browser.click_element(f'id:id-body-{order["Body"]}')
-    Browser.input_text("#Legs", order["Legs"])
-    Browser.input_text("#Address", order["Address"])
+    sel.select_frame("#Head", order["Head"])
+    sel.select_radio_button(f'id:id-body-{order["Body"]}')
+    sel.input_text("#Legs", order["Legs"])
+    sel.input_text("#Address", order["Address"])
     #Browser.click_element("text=PREVIEW")
-    Browser.click_element("text=ORDER")
+    sel.click_element("text=ORDER")
 
 def download_read_return():
     """
@@ -77,8 +78,8 @@ def close_prompt():
 def submit():
     retry_count = 3
     while retry_count > 0:
-        Browser.click_element("text=ORDER")
-        if not Browser.is_element_visible("css:.alert.alert-danger"):
+        sel.click_element("text=ORDER")
+        if not sel.is_element_visible("css:.alert.alert-danger"):
             break
         retry_count -= 1
 
@@ -93,8 +94,7 @@ def store_receipt_as_pdf(order):
 
 def picture(order):
     """Screenshot of receipt"""
-    page=Browser.page()
-    page.screenshot(path="output/receipts/robot_preview_{order}.png")
+    sel.capture_element_screenshot("#Receipt",path="output/receipts/robot_preview_{order}.png")
 
 def embed(picture,output_path):
     pdf=FPDF()
@@ -103,7 +103,7 @@ def embed(picture,output_path):
     pdf.output(output_path)
 
 def order_another():
-    Browser.click_element("text=ORDER ANOTHER ROBOT")
+    sel.click_element("text=ORDER ANOTHER ROBOT")
 
 def archive_receipts():
     archive=Archive()
